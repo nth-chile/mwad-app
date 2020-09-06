@@ -1,0 +1,58 @@
+@import "tailwindcss/base";
+
+:root {
+  --blue: #4290F5;
+  --red: #FE6D73;
+  --grey: #E0E1E6;
+  --white: #FAFBFF;
+  --black: #000000;
+  --transparent: rgba(0, 0, 0, 0);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Arbutus+Slab&display=swap');
+
+@font-face {
+  font-family: 'din';
+  src: url('../assets/fonts/din-round-500.woff2') format('woff2'),
+      url('../assets/fonts/din-round-500.woff') format('woff'),
+      url('../assets/fonts/din-round-500.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'din-bold';
+  src: url('../assets/fonts/din-round-700.woff2') format('woff2'),
+      url('../assets/fonts/din-round-700.woff') format('woff'),
+      url('../assets/fonts/din-round-700.ttf') format('truetype');
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Arbutus Slab', serif;
+  font-size: 24px;
+}
+
+@import "tailwindcss/components";
+
+.btn {
+  padding-top: 14px;
+  padding-bottom: 13px;
+  background-color: var(--blue);
+  border-radius: 6px;
+  color: var(--white);
+}
+
+.checkbox-right {
+  position: relative;
+  
+  input {
+    position: absolute;
+    right: 0;
+  }
+}
+
+@import "tailwindcss/utilities";
+
