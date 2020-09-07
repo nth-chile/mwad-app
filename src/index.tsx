@@ -1,12 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router, Switch, Route,
+} from "react-router-dom";
+
 import './style/postcss.output.css';
-import App from './App';
+
+import Welcome from './screens/Welcome'
+import WelcomeLangs from './screens/WelcomeLangs'
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <div className="h-full" style={{ padding: 20 }}>
+        <Switch>
+          <Route path="/welcome/langs">
+            <WelcomeLangs />
+          </Route>
+          <Route path="/welcome">
+            <Welcome />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

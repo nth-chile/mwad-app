@@ -650,12 +650,24 @@ body {
 }
 
 .checkbox-right {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 14px 20px;
 }
 
 .checkbox-right input {
-    position: absolute;
-    right: 0;
+    visibility: hidden;
+  }
+
+.checkbox-right input:checked + svg {
+        visibility: visible;
+      }
+
+.checkbox-right svg {
+    visibility: hidden;
   }
 
 .space-y-0 > :not(template) ~ :not(template) {
