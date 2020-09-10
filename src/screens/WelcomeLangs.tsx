@@ -44,7 +44,7 @@ const WelcomeLangs = () => {
   return <div className="flex flex-col h-full">
     <div className="flex-grow">
       <p>Start by selecting the languages you’d like to learn.</p>
-      <ul style={{ fontSize: 18}}>
+      <ul className="mt-18" style={{ fontSize: 18}}>
         {lis}
       </ul>
     </div>

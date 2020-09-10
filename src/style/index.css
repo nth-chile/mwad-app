@@ -4,12 +4,13 @@
   --blue: #4290F5;
   --red: #FE6D73;
   --grey: #E0E1E6;
+  --dark-grey: #A7AAB8;
   --white: #FAFBFF;
   --black: #000000;
   --transparent: rgba(0, 0, 0, 0);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Arbutus+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arbutus+Slab&family=Vesper+Libre&display=swap');
 
 @font-face {
   font-family: 'din';
@@ -27,12 +28,18 @@
 }
 
 html, body {
+  background-color: var(--white);  
+  font-family: 'Arbutus Slab', serif;
+  font-size: 24px;
   height: 100%;
 }
 
-body {
-  font-family: 'Arbutus Slab', serif;
-  font-size: 24px;
+.din {
+  font-family: 'din', sans-serif;
+}
+
+.vesper-libre {
+  font-family: 'Vesper Libre', serif;
 }
 
 @import "tailwindcss/components";
@@ -66,8 +73,72 @@ body {
   svg {
     visibility: hidden;
   }
+}
 
+.radio {
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  margin-bottom: 18px;
+
+  label {
+    align-items: center;
+    display: flex;
+
+    &:before {
+      background-color: var(--blue);
+      border-radius: 100%;
+      border: 1px solid var(--grey);
+      box-shadow: inset 0px 0px 0px 10px var(--white);
+      content: "";
+      display: block;
+      height: 22px;
+      width: 22px;
+      flex-shrink: 0;
+      margin-right: 11px;
+      transition: box-shadow 50ms;
+    }
+  }
+
+  input {
+    display: none;
+
+    &:checked + label:before {
+      border-color: var(--blue);
+      box-shadow: inset 0px 0px 0px 3px var(--white);
+    }
+  }
+}
+
+.select {
+  font-size: 18px;
+  display: inline-block;
+
+  ul {
+    background: white;
+    padding-left: 10px;
+    min-width: 300px;
+  }
   
+  & > button {
+    padding-left: 10px;
+    padding-right: 20px;
+    position: relative;
+    
+    &:after {
+      content: "";
+      height: 11px;
+      width: 6px;
+      display: block;
+      background-image: url("data:image/svg+xml,%3Csvg width='6' height='10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.736 2.849H1.461l1.187-1.33 1.088 1.33zM1.407 7.636h2.475L2.644 9.019 1.407 7.636z' stroke='%23000'/%3E%3C/svg%3E");
+      background-size: cover;
+      position: absolute;
+      top: 50%;
+      right: 6px;
+      transform: translateY(-50%);
+    }
+  }
+
 }
 
 @import "tailwindcss/utilities";

@@ -13,22 +13,20 @@ interface Props {
   onMouseEnter?: MouseEventHandler;
   onMouseLeave?: MouseEventHandler;
   type?: 'button' | 'submit' | 'reset' | undefined;
-  // any other props that come into the component
+  variant?: 'unstyled'
 }
 
-const Button = React.forwardRef((props: Props, ref: any) => {
-  const {
-    active = false,
-    ariaLabel,
-    children,
-    className = '',
-    disabled = false,
-    onClick,
-    onMouseEnter,
-    onMouseLeave,
-    type = 'button',
-  } = props;
-
+const Button = React.forwardRef(({
+  active = false,
+  ariaLabel,
+  children,
+  className = '',
+  disabled = false,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+  type = 'button',
+}: Props, ref: any) => {
   return (
     <button
       aria-label={ariaLabel}

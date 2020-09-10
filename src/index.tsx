@@ -8,6 +8,9 @@ import './style/postcss.output.css';
 
 import Welcome from './screens/Welcome'
 import WelcomeLangs from './screens/WelcomeLangs'
+import WelcomeSkills from './screens/WelcomeSkills'
+import Word from './screens/Word'
+import Settings from './screens/Settings'
 
 import * as serviceWorker from './serviceWorker';
 
@@ -16,6 +19,15 @@ ReactDOM.render(
     <Router>
       <div className="h-full" style={{ padding: 20 }}>
         <Switch>
+          <Route path="/settings">
+            <Settings />
+          </Route>
+          <Route path="/word">
+            <Word />
+          </Route>
+          <Route path="/welcome/skills">
+            <WelcomeSkills/>
+          </Route>
           <Route path="/welcome/langs">
             <WelcomeLangs />
           </Route>
