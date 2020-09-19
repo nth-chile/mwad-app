@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router, Switch, Route,
 } from "react-router-dom";
-
 import './style/postcss.output.css';
 
 import Welcome from './screens/Welcome'
@@ -11,32 +10,30 @@ import WelcomeLangs from './screens/WelcomeLangs'
 import WelcomeSkills from './screens/WelcomeSkills'
 import Word from './screens/Word'
 import Settings from './screens/Settings'
+import RootRoute from './cpts/RootRoute'
 
 import * as serviceWorker from './serviceWorker';
 
+const App = () => {
+  return (
+    <div className="h-full" style={{ padding: 20 }}>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={RootRoute} />
+          <Route path="/settings" component={Settings} />
+          <Route path="/word" component={Word} />
+          <Route path="/welcome/skills" component={WelcomeSkills} />
+          <Route path="/welcome/langs" component={WelcomeLangs} />
+          <Route path="/welcome" component={Welcome} />
+        </Switch>
+      </Router>
+    </div>
+  )
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <div className="h-full" style={{ padding: 20 }}>
-        <Switch>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/word">
-            <Word />
-          </Route>
-          <Route path="/welcome/skills">
-            <WelcomeSkills/>
-          </Route>
-          <Route path="/welcome/langs">
-            <WelcomeLangs />
-          </Route>
-          <Route path="/welcome">
-            <Welcome />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

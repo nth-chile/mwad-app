@@ -4,7 +4,7 @@ import Button from '../cpts/common-unstyled/Button'
 import Select from '../cpts/common-unstyled/Select'
 
 const Settings = () => {
-  const [selected, setSelected] = useState({
+  const [selected] = useState({
     arabic: 'Showing hard words',
     german: 'Showing hard words',
     vietnamese: 'Showing hard words'
