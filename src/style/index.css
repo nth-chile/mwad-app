@@ -52,6 +52,13 @@ html, body {
   color: var(--white);
 }
 
+.btn-link {
+  padding: 0;
+  background: none;
+  color: var(--blue);
+  text-decoration: underline;
+}
+
 .checkbox-right {
   display: flex;
   justify-content: space-between;

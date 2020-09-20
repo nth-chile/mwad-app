@@ -10,6 +10,7 @@ import WelcomeLangs from './screens/WelcomeLangs'
 import WelcomeSkills from './screens/WelcomeSkills'
 import Word from './screens/Word'
 import Settings from './screens/Settings'
+import SettingsLangs from './screens/SettingsLangs'
 import RootRoute from './cpts/RootRoute'
 
 import * as serviceWorker from './serviceWorker';
@@ -20,6 +21,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path="/" component={RootRoute} />
+          <Route path="/settings/langs" component={SettingsLangs} />
           <Route path="/settings" component={Settings} />
           <Route path="/word" component={Word} />
           <Route path="/welcome/skills" component={WelcomeSkills} />

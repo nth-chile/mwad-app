@@ -11,7 +11,7 @@ interface Values {
   [key: string]: boolean;
 }
 
-const WelcomeLangs = () => {
+const SettingsLangs = () => {
   const [values, setValues] = useState<Values>({
     'ar': false,
     'hi': false,
@@ -52,7 +52,8 @@ const WelcomeLangs = () => {
     if (newToggleVal) {
       // Add lang to newLangs
       newLangs = [...langs, {
-        langCode: langToggled
+        langCode: langToggled,
+        skillLevel: 'easy' // set it to easy
       }]
     } else {
       // Remove lang from newLangs
@@ -67,7 +68,6 @@ const WelcomeLangs = () => {
 
   return <div className="flex flex-col h-full">
     <div className="flex-grow">
-      <p>Start by selecting the languages you’d like to learn.</p>
       <ul className="mt-18" style={{ fontSize: 18 }}>
         {Object.keys(values).map((i, index) => {
           const label = langCodeToLang(i as GoogleTranslateLangCodes)
@@ -89,9 +89,9 @@ const WelcomeLangs = () => {
       </ul>
     </div>
     <div className="flex-shrink-0">
-      <Link to="/welcome/skills" className="btn text-center block w-full">Continue</Link>
+      <Link to="/settings" className="btn text-center block w-full">OK</Link>
     </div>
   </div>
 }
 
-export default WelcomeLangs
+export default SettingsLangs

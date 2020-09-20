@@ -1,8 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import getLocalStorageObj from '../helpers/getLocalStorageObj'
+import langCodeToLang from '../helpers/langCodeToLang'
+import { Lang } from '../types/MWADLocalStorage'
+import APIEntryResponse from '../types/APIEntryResponse'
+import axios from 'axios'
+import Button from '../cpts/Button'
+
 
 const Word = () => {
-  console.log('hay')
+  const [entry, setEntry] = useState<APIEntryResponse | undefined>()
+  const [lang, setLang] = useState<string | undefined>()
+
+  const getSetEntry = () => {
+    const ls = getLocalStorageObj()
+    const langs: Lang[] = ls.langs
+
+    const randomLang = langs[Math.floor(Math.random() * langs.length)];
+
+    let freq
+
+    switch (randomLang.skillLevel) {
+      case 'easy':
+        freq = 3;
+        break;
+      case 'medium':
+        freq = 2;
+        break;
+      case 'hard':
+        freq = 1;
+        break;
+    }
+
+    const langName = langCodeToLang(randomLang.langCode)
+
+    if (langName) {
+      const reqURL = `https://us-east4-multilingual-wad.cloudfunctions.net/getEntry?lang=${langName.toLowerCase()}&random=true&freq=${freq}`
+
+      axios.get(reqURL).then(res => {
+        setEntry(res.data)
+        setLang(langName)
+      })
+    }
+  }
+  
+  useEffect(() => {
+    getSetEntry()
+  }, [])
+
+  if (!entry || !lang) {
+    return null
+  }
+
+  const alignment = lang === "Arabic" ? 'right' : 'left'
 
   return <div className="h-full flex flex-col">
     <div className="flex justify-end pb-12">
@@ -11,27 +61,26 @@ const Word = () => {
       </Link>
     </div>
     <div className="flex-1">
-      <div className="vesper-libre mb-32" style={{ fontSize: 48 }}>जानना</div>
+      <div className="mb-22" style={{ color: 'var(--dark-grey)' }}>Language: {lang}</div>
+      <div className="vesper-libre mb-32" style={{ fontSize: 48, textAlign: alignment }}>{entry.word}</div>
       <div className="mb-32">
-        <div className="mb-22" style={{ color: 'var(--dark-grey)' }}>noun</div>
-        <div>know, learn, understand, realize, be aware, cognize</div>
+        {entry.POS && <div className="mb-22" style={{ color: 'var(--dark-grey)' }}>{entry.POS.toLowerCase()}</div>}
+        <div>{entry.syns.join(', ')}</div>
       </div>
-      <div className="mb-32">
+      {/* <div className="mb-32">
         <div className="mb-22" style={{ color: 'var(--dark-grey)' }}>verb</div>
         <div>know, learn, understand, realize, be aware, cognize</div>
-      </div>
+      </div> */}
   </div>
     <div>
       <div className="text-center mb-52">
-        <Link to="/word" className="inline-block underline" style={{ color: "var(--blue)" }}>
-          Show a different word
-        </Link>
+        <Button onClick={getSetEntry} variant="link">Show a different word</Button>
       </div>
       <div>
-        <Link to="word/report">
+        {/* <Link to="word/report">
           <svg className="inline-block mr-9" width="16" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 19a1 1 0 01-2 0v-5H9v1a1 1 0 01-1 1H1a1 1 0 01-1-1V5a1 1 0 011-1h6V3a1 1 0 011-1h6V1a1 1 0 012 0v18zM9 4v1a1 1 0 01-1 1H2v8h5v-1a1 1 0 011-1h6V4H9z" fill="#FE6D73"/></svg>
           <div className="inline-block din" style={{ fontSize: 18, color: "var(--red)" }}>Report</div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   </div>
