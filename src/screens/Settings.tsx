@@ -6,7 +6,6 @@ import getLocalStorageObj from '../helpers/getLocalStorageObj'
 import setLocalStorageObj from '../helpers/setLocalStorageObj'
 import langCodeToLang from '../helpers/langCodeToLang'
 import { Lang } from '../types/MWADLocalStorage'
-import SkillLevel from '../types/SkillLevel'
 import GoogleTranslateLangCodes from '../types/GoogleTranslateLangCodes'
 
 const skillLevelToLabel = (skillLevel: string) => `Showing ${skillLevel} words`
